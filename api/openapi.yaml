@@ -1,0 +1,29 @@
+openapi: 3.0.3
+info:
+  title: react_vite_sample login API
+  version: 1.0.0
+servers:
+- url: http://localhost:5000
+  description: local server
+tags:
+- name: login
+  description: Concerned about login
+paths:
+  /login:
+    get:
+      tags:
+      - login
+      summary: Get Login Info
+      description: Check you are already login state
+      operationId: loginGET
+      responses:
+        "200":
+          description: Success operation
+          content:
+            application/json:
+              schema:
+                type: string
+                example: "false"
+                x-content-type: application/json
+      x-swagger-router-controller: Login
+components: {}
