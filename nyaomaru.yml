@@ -1,51 +1,95 @@
-openapi: "3.0.3"
-
+openapi: 3.0.3
 info:
-  title: "react_vite_sample login API"
-  version: "1.0.0"
-
+  title: react_vite_sample API
+  version: 1.0.0
 servers:
-  - url: "http://localhost:8080"
-    description: "local server"
-
+  - url: http://localhost:8080
+    description: local server
+tags:
+  - name: login
+    description: Concerned about login
+  - name: form
+    description: Concerned about form
 paths:
-  "/login":
+  /login:
     get:
-      summary: "Get Login Info"
-      description: "Check you are already login state"
-      tags: ["login"]
+      tags:
+        - login
+      summary: Get Login Info
+      description: Check you are already login state
+      operationId: loginGET
       responses:
         "200":
-          description: "Success operation"
+          description: Success operation
           content:
             application/json:
               schema:
                 type: string
-                example: false
+                example: "false"
+                x-content-type: application/json
+      x-swagger-router-controller: Login
     post:
-      summary: "Post Login Info"
-      description: "Post login state info"
-      tags: ["login"]
+      tags:
+        - login
+      summary: Post Login Info
+      description: Post login state info
+      operationId: loginPOST
       requestBody:
-        required: true
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                username:
-                  type: string
-                password:
-                  type: string
+              $ref: "#/components/schemas/login_body"
+        required: true
       responses:
         "200":
-          description: "Success operation"
+          description: Success operation
           content:
             application/json:
               schema:
                 type: string
-                example: true
-
-tags:
-  - name: "login"
-    description: "Concerned about login"
+                example: "true"
+                x-content-type: application/json
+      x-swagger-router-controller: Login
+  /form:
+    post:
+      tags:
+        - form
+      summary: Post Form Info
+      description: Post form state info
+      operationId: formPOST
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/form_body"
+        required: true
+      responses:
+        "200":
+          description: Success operation
+          content:
+            application/json:
+              schema:
+                type: string
+                example: "true"
+                x-content-type: application/json
+      x-swagger-router-controller: Form
+components:
+  schemas:
+    login_body:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+    form_body:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+        city:
+          type: string
+        option:
+          type: string

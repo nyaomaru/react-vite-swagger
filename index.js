@@ -1,27 +1,45 @@
 "use strict";
 
-// // Import the required modules
+var path = require("path");
+var http = require("http");
+
 var express = require("express");
 var cors = require("cors");
 
-// Import the Login controller
-var loginController = require("./controllers/Login");
+var oas3Tools = require("oas3-tools");
+var serverPort = 8080;
 
-// Create an Express application
-var app = express();
+// swaggerRouter configuration
+var options = {
+  routing: {
+    controllers: path.join(__dirname, "./controllers"),
+  },
+};
 
-// Add CORS middleware to handle CORS headers
-app.use(cors());
+var expressAppConfig = oas3Tools.expressAppConfig(
+  path.join(__dirname, "api/openapi.yaml"),
+  options
+);
+const openApiApp = expressAppConfig.getApp();
 
-app.get("/login", loginController.loginGET);
-app.post("/login", loginController.loginPOST);
+const app = express();
 
-// Handle OPTIONS requests explicitly
-app.options("*", cors()); // Enable pre-flight across all routes
+// Add headers
+app.use(/.*/, cors());
 
-// Start the server
-var server = app.listen(8080, function () {
-  var host = server.address().address;
-  var port = server.address().port;
-  console.log("Server listening at http://%s:%s", host, port);
+for (let i = 2; i < openApiApp._router.stack.length; i++) {
+  app._router.stack.push(openApiApp._router.stack[i]);
+}
+
+// Initialize the Swagger middleware
+http.createServer(app).listen(serverPort, function () {
+  console.log(
+    "Your server is listening on port %d (http://localhost:%d)",
+    serverPort,
+    serverPort
+  );
+  console.log(
+    "Swagger-ui is available on http://localhost:%d/docs",
+    serverPort
+  );
 });
