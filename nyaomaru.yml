@@ -10,6 +10,8 @@ tags:
     description: Concerned about login
   - name: form
     description: Concerned about form
+  - name: customer
+    description: Concerned about customer
 paths:
   /login:
     get:
@@ -55,7 +57,7 @@ paths:
       tags:
         - form
       summary: Post Form Info
-      description: Post form state info
+      description: Post form and return state info
       operationId: formPOST
       requestBody:
         content:
@@ -73,6 +75,22 @@ paths:
                 example: "true"
                 x-content-type: application/json
       x-swagger-router-controller: Form
+  /customer:
+    get:
+      tags:
+        - customer
+      summary: Get Customer Info
+      description: Get your customer list
+      operationId: customerGET
+      responses:
+        "200":
+          description: Success operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/customerList"
+              x-content-type: application/json
+      x-swagger-router-controller: Customer
 components:
   schemas:
     login_body:
@@ -93,3 +111,19 @@ components:
           type: string
         option:
           type: string
+    customerList:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: string
+          name:
+            type: string
+        example:
+          - id: 1
+            name: "nyaomaru"
+          - id: 2
+            name: "cat"
+          - id: 3
+            name: "dog"
