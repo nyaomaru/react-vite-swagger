@@ -3,7 +3,7 @@
 
 /**
  * Post Form Info
- * Post form state info
+ * Post form and return state info
  *
  * body Form_body 
  * returns String
