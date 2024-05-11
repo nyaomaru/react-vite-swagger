@@ -91,6 +91,26 @@ paths:
                 $ref: "#/components/schemas/customerList"
               x-content-type: application/json
       x-swagger-router-controller: Customer
+  /customer/{id}:
+    get:
+      tags:
+        - customer
+      summary: Get a customer detail by ID
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: Numeric ID of the user to get
+      responses:
+        "200":
+          description: Success operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/customerDetail"
+              x-content-type: application/json
 components:
   schemas:
     login_body:
@@ -127,3 +147,17 @@ components:
             name: "cat"
           - id: 3
             name: "dog"
+    customerDetail:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+          example: "nyaomaru"
+        city:
+          type: string
+          example: "forest 1"
+        favorite:
+          type: string
+          example: "catnip"
