@@ -3,20 +3,20 @@ info:
   title: react_vite_sample API
   version: 1.0.0
 servers:
-- url: http://localhost:8080
-  description: local server
+  - url: http://localhost:8080
+    description: local server
 tags:
-- name: login
-  description: Concerned about login
-- name: form
-  description: Concerned about form
-- name: customer
-  description: Concerned about customer
+  - name: login
+    description: Concerned about login
+  - name: form
+    description: Concerned about form
+  - name: customer
+    description: Concerned about customer
 paths:
   /login:
     get:
       tags:
-      - login
+        - login
       summary: Get Login Info
       description: Check you are already login state
       operationId: loginGET
@@ -32,7 +32,7 @@ paths:
       x-swagger-router-controller: Login
     post:
       tags:
-      - login
+        - login
       summary: Post Login Info
       description: Post login state info
       operationId: loginPOST
@@ -40,7 +40,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/login_body'
+              $ref: "#/components/schemas/login_body"
         required: true
       responses:
         "200":
@@ -55,7 +55,7 @@ paths:
   /form:
     post:
       tags:
-      - form
+        - form
       summary: Post Form Info
       description: Post form and return state info
       operationId: formPOST
@@ -63,7 +63,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/form_body'
+              $ref: "#/components/schemas/form_body"
         required: true
       responses:
         "200":
@@ -78,7 +78,7 @@ paths:
   /customer:
     get:
       tags:
-      - customer
+        - customer
       summary: Get Customer Info
       description: Get your customer list
       operationId: customerGET
@@ -88,7 +88,32 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200'
+                $ref: "#/components/schemas/customerList"
+              x-content-type: application/json
+      x-swagger-router-controller: Customer
+  /customer/{id}:
+    get:
+      tags:
+        - customer
+      summary: Get a customer detail by ID
+      operationId: customerIdGET
+      parameters:
+        - name: id
+          in: path
+          description: Numeric ID of the user to get
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Success operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/customerDetail"
+              x-content-type: application/json
       x-swagger-router-controller: Customer
 components:
   schemas:
@@ -113,30 +138,37 @@ components:
     customerList:
       type: array
       items:
-        example:
+        $ref: "#/components/schemas/customerList_inner"
+    customerDetail:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+          example: nyaomaru
+        city:
+          type: string
+          example: forest 1
+        favorite:
+          type: string
+          example: catnip
+      example:
+        city: forest 1
+        name: nyaomaru
+        id: id
+        favorite: catnip
+    customerList_inner:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+      example:
         - id: 1
           name: nyaomaru
         - id: 2
           name: cat
         - id: 3
           name: dog
-    inline_response_200:
-      type: object
-      properties:
-        customerList:
-          $ref: '#/components/schemas/customerList'
-      example:
-        customerList:
-        - - id: 1
-            name: nyaomaru
-          - id: 2
-            name: cat
-          - id: 3
-            name: dog
-        - - id: 1
-            name: nyaomaru
-          - id: 2
-            name: cat
-          - id: 3
-            name: dog
-      x-content-type: application/json
