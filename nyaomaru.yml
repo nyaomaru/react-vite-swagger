@@ -111,6 +111,33 @@ paths:
               schema:
                 $ref: "#/components/schemas/customerDetail"
               x-content-type: application/json
+  /customer/edit/{id}:
+    put:
+      tags:
+        - customer
+      summary: Update customer detail information
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/customer_form_body"
+        required: true
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: Numeric ID of the user to update
+      responses:
+        "200":
+          description: Success operation
+          content:
+            application/json:
+              schema:
+                type: string
+                example: "true"
+                x-content-type: application/json
 components:
   schemas:
     login_body:
@@ -130,6 +157,17 @@ components:
         city:
           type: string
         option:
+          type: string
+    customer_form_body:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        city:
+          type: string
+        favorite:
           type: string
     customerList:
       type: array

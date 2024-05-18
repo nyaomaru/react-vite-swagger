@@ -1,6 +1,25 @@
 "use strict";
 
 /**
+ * Update customer detail information
+ *
+ * body Customer_form_body
+ * id Integer Numeric ID of the user to update
+ * returns String
+ **/
+exports.customerEditIdPUT = function (body, id) {
+  return new Promise(function (resolve, reject) {
+    var examples = {};
+    examples["application/json"] = "true";
+    if (Object.keys(examples).length > 0) {
+      resolve(examples[Object.keys(examples)[0]]);
+    } else {
+      resolve();
+    }
+  });
+};
+
+/**
  * Get Customer Info
  * Get your customer list
  *
