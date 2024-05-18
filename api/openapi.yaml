@@ -115,6 +115,30 @@ paths:
                 $ref: "#/components/schemas/customerDetail"
               x-content-type: application/json
       x-swagger-router-controller: Customer
+    delete:
+      tags:
+        - customer
+      summary: Delete customer detail information
+      operationId: customerIdDELETE
+      parameters:
+        - name: id
+          in: path
+          description: Numeric ID of the user to update
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Success operation
+          content:
+            application/json:
+              schema:
+                type: string
+                example: "true"
+                x-content-type: application/json
+      x-swagger-router-controller: Customer
   /customer/edit/{id}:
     put:
       tags:
