@@ -55,6 +55,24 @@ exports.customerGET = function () {
 };
 
 /**
+ * Delete customer detail information
+ *
+ * id Integer Numeric ID of the user to update
+ * returns String
+ **/
+exports.customerIdDELETE = function (id) {
+  return new Promise(function (resolve, reject) {
+    var examples = {};
+    examples["application/json"] = "true";
+    if (Object.keys(examples).length > 0) {
+      resolve(examples[Object.keys(examples)[0]]);
+    } else {
+      resolve();
+    }
+  });
+};
+
+/**
  * Get a customer detail by ID
  *
  * id Integer Numeric ID of the user to get

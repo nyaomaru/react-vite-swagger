@@ -29,6 +29,21 @@ module.exports.customerGET = function customerGET(req, res, next) {
     });
 };
 
+module.exports.customerIdDELETE = function customerIdDELETE(
+  req,
+  res,
+  next,
+  id
+) {
+  Customer.customerIdDELETE(id)
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+};
+
 module.exports.customerIdGET = function customerIdGET(req, res, next, id) {
   Customer.customerIdGET(id)
     .then(function (response) {
