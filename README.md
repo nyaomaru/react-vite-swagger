@@ -1,5 +1,5 @@
 # react_vite_swagger
-Manage swagger for react_vite_sample repository
+Manage swagger for [react_vite_sample](https://github.com/nyaomaru/react_vite_sample) repository
 
 ## generate server with swagger_codegen
 
