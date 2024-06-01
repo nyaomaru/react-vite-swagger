@@ -3,7 +3,7 @@ Manage swagger for react_vite_sample repository
 
 ## generate server with swagger_codegen
 
-clone the swagger_codegen github and run below code.
+clone the [swagger_codegen](https://github.com/swagger-api/swagger-codegen) github and run below code.
 
 ```sh
 ./run-in-docker.sh mvn package
