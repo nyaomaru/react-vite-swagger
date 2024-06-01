@@ -3,7 +3,7 @@ Manage swagger for [react_vite_sample](https://github.com/nyaomaru/react_vite_sa
 
 ## generate server with swagger_codegen
 
-clone the [swagger_codegen](https://github.com/swagger-api/swagger-codegen) github and run below code.
+Clone the [swagger_codegen](https://github.com/swagger-api/swagger-codegen) github and run below code.
 
 ```sh
 ./run-in-docker.sh mvn package
@@ -15,6 +15,5 @@ clone the [swagger_codegen](https://github.com/swagger-api/swagger-codegen) gith
 Run below command
 
 ```sh
-npm install
 npm start
 ```
