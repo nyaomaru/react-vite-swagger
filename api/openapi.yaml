@@ -91,12 +91,12 @@ paths:
                 $ref: "#/components/schemas/customerList"
               x-content-type: application/json
       x-swagger-router-controller: Customer
-  /customer/{id}:
+  /customer/detail/{id}:
     get:
       tags:
         - customer
       summary: Get a customer detail by ID
-      operationId: customerIdGET
+      operationId: customerDetailIdGET
       parameters:
         - name: id
           in: path
@@ -119,7 +119,7 @@ paths:
       tags:
         - customer
       summary: Delete customer detail information
-      operationId: customerIdDELETE
+      operationId: customerDetailIdDELETE
       parameters:
         - name: id
           in: path

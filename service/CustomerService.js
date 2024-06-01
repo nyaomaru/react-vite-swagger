@@ -1,6 +1,47 @@
 "use strict";
 
 /**
+ * Delete customer detail information
+ *
+ * id Integer Numeric ID of the user to update
+ * returns String
+ **/
+exports.customerDetailIdDELETE = function (id) {
+  return new Promise(function (resolve, reject) {
+    var examples = {};
+    examples["application/json"] = "true";
+    if (Object.keys(examples).length > 0) {
+      resolve(examples[Object.keys(examples)[0]]);
+    } else {
+      resolve();
+    }
+  });
+};
+
+/**
+ * Get a customer detail by ID
+ *
+ * id Integer Numeric ID of the user to get
+ * returns customerDetail
+ **/
+exports.customerDetailIdGET = function (id) {
+  return new Promise(function (resolve, reject) {
+    var examples = {};
+    examples["application/json"] = {
+      city: "forest 1",
+      name: "nyaomaru",
+      id: "id",
+      favorite: "catnip",
+    };
+    if (Object.keys(examples).length > 0) {
+      resolve(examples[Object.keys(examples)[0]]);
+    } else {
+      resolve();
+    }
+  });
+};
+
+/**
  * Update customer detail information
  *
  * body Customer_form_body
@@ -23,7 +64,7 @@ exports.customerEditIdPUT = function (body, id) {
  * Get Customer Info
  * Get your customer list
  *
- * returns inline_response_200
+ * returns customerList
  **/
 exports.customerGET = function () {
   return new Promise(function (resolve, reject) {
@@ -45,47 +86,6 @@ exports.customerGET = function () {
           },
         ],
       ],
-    };
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
-};
-
-/**
- * Delete customer detail information
- *
- * id Integer Numeric ID of the user to update
- * returns String
- **/
-exports.customerIdDELETE = function (id) {
-  return new Promise(function (resolve, reject) {
-    var examples = {};
-    examples["application/json"] = "true";
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
-};
-
-/**
- * Get a customer detail by ID
- *
- * id Integer Numeric ID of the user to get
- * returns customerDetail
- **/
-exports.customerIdGET = function (id) {
-  return new Promise(function (resolve, reject) {
-    var examples = {};
-    examples["application/json"] = {
-      city: "forest 1",
-      name: "nyaomaru",
-      id: "id",
-      favorite: "catnip",
     };
     if (Object.keys(examples).length > 0) {
       resolve(examples[Object.keys(examples)[0]]);

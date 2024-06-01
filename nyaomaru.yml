@@ -91,7 +91,7 @@ paths:
                 $ref: "#/components/schemas/customerList"
               x-content-type: application/json
       x-swagger-router-controller: Customer
-  /customer/{id}:
+  /customer/detail/{id}:
     get:
       tags:
         - customer
