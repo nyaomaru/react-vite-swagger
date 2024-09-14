@@ -15,5 +15,5 @@ Clone the [swagger_codegen](https://github.com/swagger-api/swagger-codegen) gith
 Run below command
 
 ```sh
-npm start
+pnpm start
 ```
